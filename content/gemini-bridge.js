@@ -290,10 +290,10 @@
       if (host && SITES.isOn(host, await loadLists())) {
         page = await askBackground(false); // read the page text from the logged-in tab
         if (!page.content.trim()) throw new Error("No readable text on this page");
-        text = `Summarise the following text concisely with the key points.\n\n${page.content}`;
+        text = `Summarise the following text in four bullet points of 12 words each, omitting any unnecessary words such as that, the, this. But still use punctuation like commas.\n\n${page.content}`;
         sent = "Sent text ✓";
       } else {
-        text = `Summarise this page concisely with the key points: ${cleanUrl(page.url)}`;
+        text = `Summarise this page in four bullet points of 12 words each, omitting any unnecessary words such as as that, the, this. But still use punctuation like commas. ${cleanUrl(page.url)}`;
         sent = "Sent link ✓";
       }
       if (await insertText(text)) {
